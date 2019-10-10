@@ -1,0 +1,1 @@
+print("Damian"[::-1].capitalize() + " " + "Rekosz"[::-1].capitalize())
