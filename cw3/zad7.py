@@ -1,4 +1,3 @@
-#def odwroc(napis):
 def odwroc(napis):
     odw = list()
     for i in range(len(napis)-1, -1, -1):
