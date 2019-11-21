@@ -4,7 +4,7 @@ from django.db import models
 class Pracownicy(models.Model):
     nazwisko = models.CharField(max_length=200)
     imie = models.CharField(max_length=200)
-    pesel = models.IntegerField(max_length=11)
+    pesel = models.IntegerField()
 
 
 class Eksponaty(models.Model):
