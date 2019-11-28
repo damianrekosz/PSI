@@ -12,7 +12,7 @@ from django.template import loader
 # Create your views here.
 def index(request):
     template = loader.get_template('muzeumApp/index.html')
-    return HttpResponse(template.render(request))
+    return HttpResponse(template.render({}, request))
 
 
 class PracownicyLista(APIView):
