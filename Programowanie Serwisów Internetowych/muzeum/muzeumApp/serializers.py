@@ -3,6 +3,7 @@ from .models import Pracownicy
 from .models import Eksponaty
 from .models import Sale
 from .models import Wydarzenia
+from django.contrib.auth.models import User
 
 
 class PracownicySerializer(serializers.ModelSerializer):
@@ -28,7 +29,16 @@ class SaleSerializer(serializers.ModelSerializer):
 
 
 class WydarzeniaSerializer(serializers.ModelSerializer):
+    wlasciciel = serializers.ReadOnlyField(source='wlasciciel.username')
 
     class Meta:
         model = Wydarzenia
         fields = '__all__'
+
+
+class WlascicielSerializer(serializers.ModelSerializer):
+    wydarzenia = serializers.PrimaryKeyRelatedField(many=True, queryset=Wydarzenia.objects.all())
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'wydarzenia', 'date_joined', 'groups']
