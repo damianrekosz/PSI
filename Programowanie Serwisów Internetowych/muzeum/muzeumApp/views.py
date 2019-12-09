@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions
@@ -32,6 +33,16 @@ class PracownicyLista(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
+class PracownicyDetail(generics.UpdateAPIView):
+    queryset = Pracownicy.objects.all()
+    serializer_class = PracownicySerializer
+
+    def get(self, request, pk):
+        prac = Pracownicy.objects.filter(id=pk)
+        serializer = PracownicySerializer(prac, many=True)
+        return Response(serializer.data)
+
+
 class EksponatyLista(APIView):
 
     def get(self, request):
@@ -45,6 +56,16 @@ class EksponatyLista(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EksponatyDetail(generics.UpdateAPIView):
+    queryset = Eksponaty.objects.all()
+    serializer_class = EksponatySerializer
+
+    def get(self, request, pk):
+        prac = Eksponaty.objects.filter(id=pk)
+        serializer = EksponatySerializer(prac, many=True)
+        return Response(serializer.data)
 
 
 class SaleLista(APIView):
@@ -62,11 +83,14 @@ class SaleLista(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class SaleDetail(APIView):
+class SaleDetail(generics.UpdateAPIView):
+    queryset = Sale.objects.all()
+    serializer_class = SaleSerializer
 
-    def get(self,request, pk):
-        queryset = Sale.objects.all()
-        serializer_class = SaleSerializer
+    def get(self, request, pk):
+        prac = Sale.objects.filter(id = pk)
+        serializer = SaleSerializer(prac, many=True)
+        return Response(serializer.data)
 
 
 
@@ -84,6 +108,16 @@ class WydarzeniaLista(APIView):
             serializer.save(wlasciciel=self.request.user)
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class WydarzeniaDetail(generics.UpdateAPIView):
+    queryset = Wydarzenia.objects.all()
+    serializer_class = WydarzeniaSerializer
+
+    def get(self, request, pk):
+        prac = Wydarzenia.objects.filter(id=pk)
+        serializer = WydarzeniaSerializer(prac, many=True)
+        return Response(serializer.data)
 
 
 class WlascicielLista(generics.ListAPIView):
