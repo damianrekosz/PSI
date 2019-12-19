@@ -25,3 +25,4 @@ class Wydarzenia(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
     nazwa = models.CharField(max_length=200)
     wlasciciel = models.ForeignKey('auth.User', related_name='wydarzenia', on_delete=models.CASCADE)
+    #hehe

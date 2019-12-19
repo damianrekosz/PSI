@@ -159,6 +159,7 @@ class WydarzeniaDetail(APIView):
     def delete(self, request, pk):
         prac = Wydarzenia.objects.filter(id=pk)
         prac.delete()
+        #hehe
 
 
 class WlascicielLista(generics.ListAPIView):
