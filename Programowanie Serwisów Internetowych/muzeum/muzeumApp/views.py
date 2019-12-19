@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
@@ -19,6 +20,9 @@ def index(request):
 
 
 class PracownicyLista(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
+    queryset = Pracownicy.objects.all()
+    serializer_class = PracownicySerializer
 
     def get(self, request):
         prac = Pracownicy.objects.all()
@@ -34,6 +38,7 @@ class PracownicyLista(APIView):
 
 
 class PracownicyDetail(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
     queryset = Pracownicy.objects.all()
     serializer_class = PracownicySerializer
 
@@ -43,16 +48,17 @@ class PracownicyDetail(generics.UpdateAPIView):
         return Response(serializer.data)
 
     def delete(self, request, pk):
-        if request.user.has_perm('muzeumapp.pracownicy.delete_pracownicy'):
-            prac = Pracownicy.objects.filter(id=pk)
-            prac.delete()
-        else:
-            return HttpResponse('błąd 401 - użytkownik nieautoryzowany do wykonania tej czynności')
+        prac = Pracownicy.objects.filter(id=pk)
+        prac.delete()
+
 
 
 
 
 class EksponatyLista(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
+    queryset = Eksponaty.objects.all()
+    serializer_class = EksponatySerializer
 
     def get(self, request):
         prac = Eksponaty.objects.all()
@@ -68,6 +74,7 @@ class EksponatyLista(APIView):
 
 
 class EksponatyDetail(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
     queryset = Eksponaty.objects.all()
     serializer_class = EksponatySerializer
 
@@ -77,14 +84,14 @@ class EksponatyDetail(generics.UpdateAPIView):
         return Response(serializer.data)
 
     def delete(self, request, pk):
-        if request.user.has_perm('muzeumapp.eksponaty.delete_eksponaty'):
-            prac = Eksponaty.objects.filter(id=pk)
-            prac.delete()
-        else:
-            return HttpResponse('błąd 401 - użytkownik nieautoryzowany do wykonania tej czynności')
+        prac = Eksponaty.objects.filter(id=pk)
+        prac.delete()
 
 
 class SaleLista(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
+    queryset = Sale.objects.all()
+    serializer_class = SaleSerializer
 
     def get(self, request):
         prac = Sale.objects.all()
@@ -100,6 +107,7 @@ class SaleLista(APIView):
 
 
 class SaleDetail(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
 
@@ -109,14 +117,14 @@ class SaleDetail(generics.UpdateAPIView):
         return Response(serializer.data)
 
     def delete(self, request, pk):
-        if request.user.has_perm('muzeumapp.sale.delete_sale'):
-            prac = Sale.objects.filter(id=pk)
-            prac.delete()
-        else:
-            return HttpResponse('błąd 401 - użytkownik nieautoryzowany do wykonania tej czynności')
+        prac = Sale.objects.filter(id=pk)
+        prac.delete()
 
 
 class WydarzeniaLista(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
+    queryset = Wydarzenia.objects.all()
+    serializer_class = WydarzeniaSerializer
 
     def get(self, request):
         prac = Wydarzenia.objects.all()
@@ -132,6 +140,9 @@ class WydarzeniaLista(APIView):
 
 
 class WydarzeniaDetail(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.DjangoModelPermissions]
+    queryset = Wydarzenia.objects.all()
+    serializer_class = WydarzeniaSerializer
 
     def put(self, request, pk):
         prac = Wydarzenia.objects.filter(id=pk)
@@ -146,19 +157,18 @@ class WydarzeniaDetail(APIView):
         return Response(serializer.data)
 
     def delete(self, request, pk):
-        if request.user.has_perm('muzeumapp.wydarzenia.delete_wydarzenia'):
-            prac = Wydarzenia.objects.filter(id=pk)
-            prac.delete()
-        else:
-            return HttpResponse('błąd 401 - użytkownik nieautoryzowany do wykonania tej czynności')
+        prac = Wydarzenia.objects.filter(id=pk)
+        prac.delete()
 
 
 class WlascicielLista(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = WlascicielSerializer
 
 
 class WlascicielDetail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = WlascicielSerializer
 
