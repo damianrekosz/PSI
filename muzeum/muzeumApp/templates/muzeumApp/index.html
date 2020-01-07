@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Projekt MUZEUM</title>
+    <style>
+        .navbar {
+            background: #2C2C2C;
+            color: white;
+            border: none;
+            border-top: 5px solid #A30000;
+            border-radius: 0;
+            height: 55px;
+        }
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background: #fff;
+        }
+        .navbar-brand {
+            float: left;
+            height: 50px;
+            padding-top: 15px;
+            font-size: 18px;
+            line-height: 5px;
+        }
+        @media (min-width: 768px) {
+            .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+                margin-left: -25px;
+            }
+
+            .navbar-nav > li {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                margin-right: -8px;
+            }
+        }
+        .nav > li  {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            top: -8px;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #9d9d9d;
+        }
+        .navbar .nav li, .navbar .nav li a, .navbar .navbar-brand:hover {
+            color: white;
+        }
+        .btn-outline-danger{
+            width: 200px;
+            font-weight: bold;
+            border-color: #A30000;
+            color: #A30000;
+        }
+        .btn-outline-danger:hover{
+            background-color: #A30000;
+        }
+        h3{
+            margin-top: 40px;
+        }
+        footer{
+            font-weight: bold;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-static-top navbar-inverse" role="navigation" aria-label="navbar">
+    <div class="container">
+        <span>
+            <a class="navbar-brand" rel="nofollow" href="https://www.django-rest-framework.org/">
+                Django REST framework
+            </a>
+        </span>
+        <ul class="nav navbar-nav pull-right">
+            <li>Programowanie Serwisów Internetowych</li>
+        </ul>
+    </div>
+</div>
+<main>
+    <div class="container text-center">
+        <h3>Projekt</h3>
+        <h1 class="mb-4">MUZEUM</h1>
+        <a href="http://127.0.0.1:8000/muzeumapp/pracownicy">
+            <button class="btn btn-outline-danger mb-2">Pracownicy</button>
+        </a><br/>
+        <a href="http://127.0.0.1:8000/muzeumapp/eksponaty">
+            <button class="btn btn-outline-danger mb-2">Eksponaty</button>
+        </a><br/>
+        <a href="http://127.0.0.1:8000/muzeumapp/sale">
+            <button class="btn btn-outline-danger mb-2">Sale</button>
+        </a><br/>
+        <a href="http://127.0.0.1:8000/muzeumapp/wydarzenia">
+            <button class="btn btn-outline-danger mb-2">Wydarzenia</button>
+        </a><br/>
+        <a href="http://127.0.0.1:8000/muzeumapp/wlascicielowiowie">
+            <button class="btn btn-outline-danger mb-2">Właściciele</button>
+        </a>
+    </div>
+</main>
+<footer>
+    <div class="container text-uppercase">
+        Paweł Strenkowski<br/>
+        Damian Rekosz<br/>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
